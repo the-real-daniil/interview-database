@@ -277,6 +277,55 @@ type MyReturnType<T> = T extends (...args: []any) => infer R ? R : never
 </details>
 
 <details>
+<summary><b>Чем отличается <code>as const</code> от <code>satisfies</code>?</b></summary>
+
+Главное отличие <code>as const</code> от <code>satisfies</code> в TypeScript заключается в том, что <code>as const</code> жестко принудительно задает тип и делает значения неизменяемыми (readonly), а <code>satisfies</code> лишь проверяет соответствие, сохраняя при этом максимально точный и изменяемый тип исходного объекта.
+
+### Пример с as const:
+
+Свойства становятся доступными только для чтения, а ключи строго фиксируются. Если вы попытаетесь изменить цвет в коде позже, TypeScript выдаст ошибку.
+
+```ts
+const colors = {
+  primary: "#ff0000",
+  secondary: "#00ff00"
+} as const;
+
+// Тип выводится как:
+// const colors: { readonly primary: "#ff0000"; readonly secondary: "#00ff00"; }
+```
+
+### Пример с satisfies:
+
+Объект проверяется на соответствие, но сохраняет изменяемость. Типы значений остаются базовыми (string), что позволяет переприсваивать их в программе, но ключи остаются строго под контролем.
+
+```ts
+type ColorConfig = Record<string, string>;
+
+const colors = {
+  primary: "#ff0000",
+  secondary: "#00ff00"
+} satisfies ColorConfig;
+
+// Тип выводится как исходный:
+// const colors: { primary: string; secondary: string; }
+```
+
+### Сила комбинации: as const satisfies
+
+Эти операторы не исключают, а отлично дополняют друг друга. Если вам нужны строгие литеральные типы (как у as const), но вы всё равно хотите проверить, что объект отвечает требованиям интерфейса, их можно объединить:
+
+```ts
+type AllowedKeys = "primary" | "secondary";
+
+const colors = {
+  primary: "#ff0000",
+  secondary: "#00ff00"
+} as const satisfies Record<AllowedKeys, string>;
+```
+</details>
+
+<details>
 <summary><b>Как реализуются принципы ООП в TypeScript?</b></summary>
 
 1. Инкапсуляция: TypeScript поддерживает инкапсуляцию путем использования модификаторов доступа, таких как `public`, `private` и `protected`, для ограничения доступа к членам класса.
