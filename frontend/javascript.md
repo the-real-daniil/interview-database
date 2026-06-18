@@ -2041,10 +2041,9 @@ Promise.reject(2)
 </details>
 
 # Еще больше задач
+- [https://www.hackfrontend.com/ru/problems](https://www.hackfrontend.com/ru/problems) — задачи с реальных собесов
 
 - [https://github.com/the-real-daniil/yandex-interview](https://github.com/the-real-daniil/yandex-interview) — задачи с собеседований в Яндекс
-
-- [https://www.hackfrontend.com/ru/problems](https://www.hackfrontend.com/ru/problems) — задачи с реальных собесов
 
 - [https://docs.google.com/document/d/1Bx8bR5gqZ_IincfEqBT6x9xEzPvtrLS4TUjK_HopHGI/edit?usp=sharing](https://docs.google.com/document/d/1Bx8bR5gqZ_IincfEqBT6x9xEzPvtrLS4TUjK_HopHGI/edit?usp=sharing) — сборник задач с собесов в бигтех
 
