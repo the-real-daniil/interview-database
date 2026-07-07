@@ -1623,12 +1623,11 @@ const calc = (expr = '') => {
 		return 0
 	}
 
-	let result = 0
 	let operands = []
 	
 	const arr = expr.split(' ')
 	
-	for (let i = 0; i < arr.length; ++i) {
+	for (let i = 0; i < arr.length; i++) {
 	    const elem = arr[i]
 	
 	    switch (elem) {
@@ -1649,13 +1648,19 @@ const calc = (expr = '') => {
 	            if (operands.length === 1) {
 	                throw new Error('Error in Syntax')
 	            }
-	            operands.push(operands.pop() - operands.pop())
+                
+              const b = operands.pop();
+				      const a = operands.pop();
+
+	            operands.push(a - b)
 	            break
 	        default:
-	            if (Number.isNan(+arr[i])) {
+                const num = +arr[i];
+
+	            if (Number.isNaN(num)) {
 	                throw new Error('Error in Operands')
 	            }
-	            operands.push(arr[i])
+	            operands.push(num)
 	    }
 	}
 	
@@ -1664,7 +1669,7 @@ const calc = (expr = '') => {
 	}
 	
 	return operands[0]
-}
+};
 ```
 
 </details>
