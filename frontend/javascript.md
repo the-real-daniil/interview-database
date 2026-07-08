@@ -1741,13 +1741,13 @@ class Promise {
 	#resolve(value) {
 	    let result = value
 	
-	    queue.forEach(cb => {
+	    this.queue.forEach(cb => {
 	        result = cb(result)
 	    })
 	}
 	
 	then(cb) {
-	    queue.push(cb)
+	    this.queue.push(cb)
 	
 	    return this
 	}
