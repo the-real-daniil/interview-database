@@ -59,3 +59,13 @@ Skills превращают контекст из разового промпт�
 В похожем духе работает связка с БД: с MCP-сервером поверх Postgres агент не просит дамп таблиц, а выполняет конкретные запросы вроде «покажи последние 50 ошибок по пользователям с такими-то флагами» и сверяет гипотезу прямо на данных. MCP требует настроек и разграничения прав, но если один раз продумать этот слой, то управлять контекстом задач становится сильно удобнее.
 
 Результат вызова MCP, например описание тикета, можно попросить сохранять в отдельный markdown рядом с таск-файлами и в следующей сессии только обновлять данные, если надо.
+
+## Полезные материалы
+
+1. Спека по скиллам ([https://agentskills.io/home](https://agentskills.io/home));
+2. Полезные MCP:
+- Playwright ([https://playwright.dev/docs/getting-started-mcp](https://playwright.dev/docs/getting-started-mcp));
+- DevTools ([https://developer.chrome.com/blog/chrome-devtools-mcp?hl=ru](https://developer.chrome.com/blog/chrome-devtools-mcp?hl=ru));
+- Figma ([https://www.figma.com/mcp-catalog/](https://www.figma.com/mcp-catalog/)).
+
+\* - для `Figma MCP` нужна платная подписка на `Figma`.
