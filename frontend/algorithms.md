@@ -168,29 +168,27 @@
 
 8. [https://leetcode.com/problems/valid-palindrome/?envType=study-plan-v2&envId=top-interview-150](https://leetcode.com/problems/valid-palindrome/?envType=study-plan-v2&envId=top-interview-150)
 
-9. [https://t.me/jsgrill/159](https://t.me/jsgrill/159)
+9. [https://leetcode.com/problems/guess-number-higher-or-lower/description/?envType=study-plan-v2&envId=leetcode-75](https://leetcode.com/problems/guess-number-higher-or-lower/description/?envType=study-plan-v2&envId=leetcode-75)
 
-10. [https://leetcode.com/problems/guess-number-higher-or-lower/description/?envType=study-plan-v2&envId=leetcode-75](https://leetcode.com/problems/guess-number-higher-or-lower/description/?envType=study-plan-v2&envId=leetcode-75)
+10. [https://leetcode.com/problems/group-anagrams/description/](https://leetcode.com/problems/group-anagrams/description/)
 
-11. [https://leetcode.com/problems/group-anagrams/description/](https://leetcode.com/problems/group-anagrams/description/)
+11. [https://www.codewars.com/kata/595afed8c52e25d92c000072](https://www.codewars.com/kata/595afed8c52e25d92c000072)
 
-12. [https://www.codewars.com/kata/595afed8c52e25d92c000072](https://www.codewars.com/kata/595afed8c52e25d92c000072)
+12. [https://leetcode.com/problems/power-of-two/description/](https://leetcode.com/problems/power-of-two/description/)
 
-13. [https://leetcode.com/problems/power-of-two/description/](https://leetcode.com/problems/power-of-two/description/)
+13. [https://leetcode.com/problems/longest-substring-without-repeating-characters/description/](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
 
-14. [https://leetcode.com/problems/longest-substring-without-repeating-characters/description/](https://leetcode.com/problems/longest-substring-without-repeating-characters/description/)
+14. [https://leetcode.com/problems/can-place-flowers/description/?envType=study-plan-v2&envId=leetcode-75](https://leetcode.com/problems/can-place-flowers/description/?envType=study-plan-v2&envId=leetcode-75)
 
-15. [https://leetcode.com/problems/can-place-flowers/description/?envType=study-plan-v2&envId=leetcode-75](https://leetcode.com/problems/can-place-flowers/description/?envType=study-plan-v2&envId=leetcode-75)
+15. [https://leetcode.com/problems/isomorphic-strings/description/?envType=study-plan-v2&envId=top-interview-150](https://leetcode.com/problems/isomorphic-strings/description/?envType=study-plan-v2&envId=top-interview-150)
 
-16. [https://leetcode.com/problems/isomorphic-strings/description/?envType=study-plan-v2&envId=top-interview-150](https://leetcode.com/problems/isomorphic-strings/description/?envType=study-plan-v2&envId=top-interview-150)
+16. [https://www.codewars.com/kata/57547f9182655569ab0008c4](https://www.codewars.com/kata/57547f9182655569ab0008c4)
 
-17. [https://www.codewars.com/kata/57547f9182655569ab0008c4](https://www.codewars.com/kata/57547f9182655569ab0008c4)
+17. [https://www.codewars.com/kata/5a15a4db06d5b6d33c000018](https://www.codewars.com/kata/5a15a4db06d5b6d33c000018)
 
-18. [https://www.codewars.com/kata/5a15a4db06d5b6d33c000018](https://www.codewars.com/kata/5a15a4db06d5b6d33c000018)
+18. [https://leetcode.com/problems/longest-palindromic-substring/description/](https://leetcode.com/problems/longest-palindromic-substring/description/)
 
-19. [https://leetcode.com/problems/longest-palindromic-substring/description/](https://leetcode.com/problems/longest-palindromic-substring/description/)
-
-20. [https://leetcode.com/problems/lru-cache/description/](https://leetcode.com/problems/lru-cache/description/)
+19. [https://leetcode.com/problems/lru-cache/description/](https://leetcode.com/problems/lru-cache/description/)
 
 Ниже еще список - это просто задачи на лайвкодинг — чтобы прокачать навык быстро ориентироваться и писать код в реальном времени.
 
@@ -198,45 +196,31 @@
 
 1. [https://leetcode.com/problems/counter/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/counter/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-2. [https://t.me/jsgrill/141](https://t.me/jsgrill/141)
+2. [https://bigfrontend.dev/problem/implement-general-memoization-function](https://bigfrontend.dev/problem/implement-general-memoization-function)
 
-3. [https://bigfrontend.dev/problem/implement-general-memoization-function](https://bigfrontend.dev/problem/implement-general-memoization-function)
+3. [https://bigfrontend.dev/problem/implement-basic-debounce](https://bigfrontend.dev/problem/implement-basic-debounce)
 
-4. [https://bigfrontend.dev/problem/implement-basic-debounce](https://bigfrontend.dev/problem/implement-basic-debounce)
+4. [https://leetcode.com/problems/to-be-or-not-to-be/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/to-be-or-not-to-be/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-5. [https://t.me/jsgrill/40](https://t.me/jsgrill/40)
+5. [https://leetcode.com/problems/counter-ii/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/counter-ii/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-6. [https://leetcode.com/problems/to-be-or-not-to-be/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/to-be-or-not-to-be/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+6. [https://bigfrontend.dev/problem/implement-curry](https://bigfrontend.dev/problem/implement-curry)
 
-7. [https://t.me/jsgrill/147](https://t.me/jsgrill/147)
+7. [https://leetcode.com/problems/allow-one-function-call/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/allow-one-function-call/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-8. [https://leetcode.com/problems/counter-ii/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/counter-ii/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+8. [https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-9. [https://bigfrontend.dev/problem/implement-curry](https://bigfrontend.dev/problem/implement-curry)
+9. [https://bigfrontend.dev/problem/create-an-Event-Emitter](https://bigfrontend.dev/problem/create-an-Event-Emitter)
 
-10. [https://t.me/jsgrill/183](https://t.me/jsgrill/183)
+10. [https://www.codewars.com/kata/64b771989416793927fbd2bf](https://www.codewars.com/kata/64b771989416793927fbd2bf)
 
-11. [https://leetcode.com/problems/allow-one-function-call/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/allow-one-function-call/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+11. [https://bigfrontend.dev/problem/implement-clearAllTimeout](https://bigfrontend.dev/problem/implement-clearAllTimeout)
 
-12. [https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+12. [https://leetcode.com/problems/join-two-arrays-by-id/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/join-two-arrays-by-id/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-13. [https://t.me/jsgrill/129](https://t.me/jsgrill/129)
+13. [https://leetcode.com/problems/flatten-deeply-nested-array/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/flatten-deeply-nested-array/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-14. [https://bigfrontend.dev/problem/create-an-Event-Emitter](https://bigfrontend.dev/problem/create-an-Event-Emitter)
-
-15. [https://www.codewars.com/kata/64b771989416793927fbd2bf](https://www.codewars.com/kata/64b771989416793927fbd2bf)
-
-16. [https://bigfrontend.dev/problem/implement-clearAllTimeout](https://bigfrontend.dev/problem/implement-clearAllTimeout)
-
-17. [https://leetcode.com/problems/join-two-arrays-by-id/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/join-two-arrays-by-id/description/?envType=study-plan-v2&envId=30-days-of-javascript)
-
-18. [https://t.me/jsgrill/105](https://t.me/jsgrill/105)
-
-19. [https://leetcode.com/problems/flatten-deeply-nested-array/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/flatten-deeply-nested-array/description/?envType=study-plan-v2&envId=30-days-of-javascript)
-
-20. [https://bigfrontend.dev/problem/implement-basic-throttle](https://bigfrontend.dev/problem/implement-basic-throttle)
-
-21. [https://t.me/jsgrill/127](https://t.me/jsgrill/127)
+14. [https://bigfrontend.dev/problem/implement-basic-throttle](https://bigfrontend.dev/problem/implement-basic-throttle)
 
 В целом, это всё. Если придерживаться этих советов, работать вдумчиво и последовательно, двигаться по материалу и просто делать - ты довольно быстро научишься решать задачи и будешь готов к собесам. Главное - не торопиться, не сдаваться и довериться процессу. Всё получится 💪
 
@@ -280,27 +264,17 @@
 
 1. [https://leetcode.com/problems/word-pattern/description/?envType=study-plan-v2&envId=top-interview-150](https://leetcode.com/problems/word-pattern/description/?envType=study-plan-v2&envId=top-interview-150)
 
-2. [https://t.me/jsgrill/159](https://t.me/jsgrill/159)
-
-3. [https://t.me/jsgrill/183](https://t.me/jsgrill/183)
-
-4. [https://t.me/jsgrill/147](https://t.me/jsgrill/147)
-
 Задачи на лайвкодинг (не алгосы)
 
-1. [https://t.me/jsgrill/141](https://t.me/jsgrill/141)
+1. [https://leetcode.com/problems/counter/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/counter/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-2. [https://leetcode.com/problems/counter/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/counter/description/?envType=study-plan-v2&envId=30-days-of-javascript)
+2. [https://bigfrontend.dev/problem/implement-general-memoization-function](https://bigfrontend.dev/problem/implement-general-memoization-function)
 
-3. [https://bigfrontend.dev/problem/implement-general-memoization-function](https://bigfrontend.dev/problem/implement-general-memoization-function)
+3. [https://bigfrontend.dev/problem/implement-curry](https://bigfrontend.dev/problem/implement-curry)
 
-4. [https://bigfrontend.dev/problem/implement-curry](https://bigfrontend.dev/problem/implement-curry)
+4. [https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript)
 
-5. [https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript](https://leetcode.com/problems/sleep/description/?envType=study-plan-v2&envId=30-days-of-javascript)
-
-6. [https://bigfrontend.dev/problem/implement-basic-debounce](https://bigfrontend.dev/problem/implement-basic-debounce)
-
-7. [https://t.me/jsgrill/127](https://t.me/jsgrill/127)
+5. [https://bigfrontend.dev/problem/implement-basic-debounce](https://bigfrontend.dev/problem/implement-basic-debounce)
 
 ### Доп мысли и материалы
 
