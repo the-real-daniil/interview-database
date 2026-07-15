@@ -78,7 +78,7 @@ Spec Kit решает две фундаментальные проблемы в 
 
 Таким образом, команды могут перенести проектирование, принятие решений и защитные ограждения на более ранние этапы, продвигая код вниз по потоку для разработки по принципу «безопасность по дизайну» (security by design), с меньшим техническим долгом, меньшим количеством сломанных интерфейсов и значительно меньшим объемом переделок в командах.
 
-Поскольку этот сдвиг все еще созревает, появляются различные подходы: Kiro IDE, BMAD, GitHub Spec Kit и другие. Каждый из них отражает свою интерпретацию модели. В нашем случае Spec Kit подошел наиболее естественно, так как мы уже работали внутри VS Code с GitHub Copilot. Поддержка Microsoft вселила уверенность, и мы хотели проверить модель с помощью быстрых прототипов, а не долгих сравнений. Это сработало хорошо с самого начала, поэтому мы продолжили развивать это направление.
+Поскольку этот сдвиг все еще созревает, появляются различные подходы: Kiro IDE, BMAD, GitHub Spec Kit и другие. Каждый из них отражает свою интерпретацию модели.
 
 Для формального контекста документация GitHub на [github.com/github/spec-kit](https://github.com/github/spec-kit) и статья [den.dev/blog/github-spec-kit](https://den.dev/blog/github-spec-kit) являются надежной отправной точкой, но то, что следует далее в этом блоге, основано на реальном внедрении спецификаций для создания продуктов.
 
@@ -86,7 +86,9 @@ Spec Kit решает две фундаментальные проблемы в 
 
 1. Спека по скиллам ([https://agentskills.io/home](https://agentskills.io/home));
 2. Сервис с актуальной документацией о библиотеках/фреймворках для LLM ([https://context7.com/](https://context7.com/));
-2. Полезные MCP:
+3. Дока про spec-kit ([https://github.com/github/spec-kit](https://github.com/github/spec-kit));
+4. Статья про spec-kit ([https://den.dev/blog/github-spec-kit](https://den.dev/blog/github-spec-kit));
+5. Полезные MCP:
 - Playwright ([https://playwright.dev/docs/getting-started-mcp](https://playwright.dev/docs/getting-started-mcp));
 - DevTools ([https://developer.chrome.com/blog/chrome-devtools-mcp?hl=ru](https://developer.chrome.com/blog/chrome-devtools-mcp?hl=ru));
 - Figma ([https://www.figma.com/mcp-catalog/](https://www.figma.com/mcp-catalog/)).
