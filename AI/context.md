@@ -80,8 +80,6 @@ Spec Kit решает две фундаментальные проблемы в 
 
 Поскольку этот сдвиг все еще созревает, появляются различные подходы: Kiro IDE, BMAD, GitHub Spec Kit и другие. Каждый из них отражает свою интерпретацию модели.
 
-Для формального контекста документация GitHub на [github.com/github/spec-kit](https://github.com/github/spec-kit) и статья [den.dev/blog/github-spec-kit](https://den.dev/blog/github-spec-kit) являются надежной отправной точкой, но то, что следует далее в этом блоге, основано на реальном внедрении спецификаций для создания продуктов.
-
 ## Полезные материалы
 
 1. Спека по скиллам ([https://agentskills.io/home](https://agentskills.io/home));
