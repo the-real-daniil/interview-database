@@ -1,4 +1,36 @@
 <details>
+<summary><b>Что такое Node.js и из каких частей он состоит?</b></summary>
+
+### Что такое Node.js
+
+Node.js — это среда выполнения (runtime) для JavaScript вне браузера, построенная на движке V8. Позволяет писать серверный код на JS: HTTP-серверы, CLI-инструменты, работу с файловой системой, базами данных и т.д. Главная особенность — однопоточная, событийно-ориентированная, неблокирующая модель ввода-вывода, что делает Node.js эффективным для I/O-нагруженных задач (много одновременных соединений, мало тяжёлых вычислений).
+
+---
+
+### Из чего состоит
+
+```
+Node.js Runtime
+├── V8 Engine       — компилирует и выполняет JS-код (call stack, heap, GC)
+├── libuv           — event loop, thread pool, асинхронный I/O (кроссплатформенный слой)
+├── Bindings (C++)  — связывают JS-код с низкоуровневыми возможностями ОС и libuv
+└── Core modules    — встроенные модули на JS/C++: fs, http, crypto, stream, path и др.
+```
+
+- **V8** — движок Google, компилирует JS в машинный код, управляет памятью (heap) и стеком вызовов (call stack).
+- **libuv** — библиотека на C, реализует Event Loop, thread pool (по умолчанию 4 потока) и асинхронный доступ к файловой системе, сети, таймерам.
+- **Bindings** — прослойка, которая связывает JS API с C++/libuv реализациями.
+- **Core modules** — стандартная библиотека Node.js (`fs`, `http`, `net`, `crypto`, `stream` и т.д.), часть реализована на JS поверх bindings.
+- **Event Loop** — механизм внутри libuv, который позволяет однопоточному Node.js обрабатывать асинхронные операции без блокировки (подробнее — в следующем вопросе).
+
+### Дополнительные материалы
+
+- [https://youtu.be/243pQXC5Ebs?si=VK8dOhvUmqcbIZuX](https://youtu.be/243pQXC5Ebs?si=VK8dOhvUmqcbIZuX) — обалденный ролик от Ulbi
+- [https://nodejs.org/en/about](https://nodejs.org/en/about)
+- [https://nodejs.org/en/learn/getting-started/introduction-to-nodejs](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
+
+</details>
+<details>
 <summary><b>Что такое event loop в Node.js?</b></summary>
 
 ### Зачем нужен Event Loop
@@ -586,32 +618,90 @@ async function process() {
 
 </details>
 <details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
+<summary><b>Какие встроенные модули (библиотеки) Node.js ты знаешь?</b></summary>
+
+Node.js поставляется с набором core-модулей, доступных без установки через npm. Самые популярные:
+
+| Модуль           | Для чего нужен                                                                        |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| `fs`             | Работа с файловой системой: чтение, запись, удаление файлов, стримы файлов            |
+| `http` / `https` | Создание HTTP(S) серверов и клиентов                                                  |
+| `path`           | Работа с путями к файлам: соединение, разбор, нормализация вне зависимости от ОС      |
+| `os`             | Информация об операционной системе: CPU, память, платформа                            |
+| `events`         | Реализация `EventEmitter` — паттерн подписки на события, основа многих других модулей |
+| `stream`         | Абстракция для потоковой обработки данных (см. вопрос про streams)                    |
+| `crypto`         | Криптография: хэширование, шифрование, генерация случайных значений                   |
+| `util`           | Вспомогательные функции: `promisify`, `inspect`, работа с типами                      |
+| `url`            | Парсинг и формирование URL                                                            |
+| `querystring`    | Разбор и сборка строки query-параметров                                               |
+| `child_process`  | Запуск внешних процессов и команд ОС                                                  |
+| `cluster`        | Создание нескольких процессов для использования всех ядер CPU                         |
+| `worker_threads` | Многопоточность в рамках одного процесса                                              |
+| `zlib`           | Сжатие и распаковка данных (gzip, deflate)                                            |
+| `net`            | Низкоуровневая работа с TCP-сокетами                                                  |
+| `dns`            | Резолвинг доменных имён                                                               |
+| `assert`         | Простые проверки утверждений, часто используется в тестах                             |
+
+### Дополнительные материалы
+
+- [https://nodejs.org/api/](https://nodejs.org/api/)
+
 </details>
 <details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
-</details>
-<details>
-<summary><b>Что такое event loop в Node.js?</b></summary>
+<summary><b>Как запустить TypeScript-код в Node.js?</b></summary>
+
+Node.js сам по себе выполняет только JS, поэтому TS нужно либо скомпилировать в JS заранее, либо запускать через инструмент, который делает это на лету.
+
+### Варианты
+
+**1. Скомпилировать через `tsc`, затем запустить обычным `node`**
+
+```bash
+tsc index.ts        # компилирует в index.js
+node index.js
+```
+
+Самый предсказуемый способ для продакшена — полноценная проверка типов на этапе сборки.
+
+**2. `ts-node`** — компилирует и выполняет TS «на лету», без отдельного шага сборки
+
+```bash
+npx ts-node index.ts
+```
+
+Удобно для разработки, но медленнее из-за компиляции на каждом запуске.
+
+**3. `tsx`** — более быстрая альтернатива `ts-node` (использует esbuild под капотом)
+
+```bash
+npx tsx index.ts
+```
+
+Не делает полноценную проверку типов (только транспиляция), поэтому быстрее — типы проверяются отдельно через `tsc --noEmit`.
+
+**4. Нативная поддержка в самом Node.js** (начиная с Node.js 22+, экспериментально; стабильно — с более новых версий) — Node умеет «стирать» типы (type stripping) без установки зависимостей
+
+```bash
+node --experimental-strip-types index.ts
+# или, в свежих версиях, без флага
+node index.ts
+```
+
+Работает только для синтаксиса, который можно просто вырезать (стереть аннотации типов), без поддержки фич вроде `enum` или `namespace`, требующих реальной трансформации кода.
+
+### Итог
+
+| Способ                            | Когда использовать                               |
+| --------------------------------- | ------------------------------------------------ |
+| `tsc` + `node`                    | Продакшен, полная проверка типов                 |
+| `ts-node`                         | Разработка, если важна точность (медленнее)      |
+| `tsx`                             | Разработка, если важна скорость                  |
+| `node --experimental-strip-types` | Быстрый запуск без зависимостей, простые скрипты |
+
+### Дополнительные материалы
+
+- [https://nodejs.org/api/typescript.html](https://nodejs.org/api/typescript.html)
+- [https://github.com/TypeStrong/ts-node](https://github.com/TypeStrong/ts-node)
+- [https://www.npmjs.com/package/tsx](https://www.npmjs.com/package/tsx)
+
 </details>
