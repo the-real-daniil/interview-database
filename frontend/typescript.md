@@ -15,7 +15,7 @@ TypeScript - это язык программирования, который я
 
 2. **Поддержка классов и модулей:** TypeScript поддерживает классы, интерфейсы и модули, что делает код более структурированным и удобным для организации больших проектов. JavaScript имеет ограниченную поддержку классов и модулей.
 
-3. **Дополнительные возможности:** TypeScript предоставляет дополнительные возможности, такие как *перечисления (enums*), *кортежи (tuples)*, *типы-алиасы (type aliases*) и другие. Это позволяет разработчикам писать более выразительный и понятный код.
+3. **Дополнительные возможности:** TypeScript предоставляет дополнительные возможности, такие как _перечисления (enums_), _кортежи (tuples)_, _типы-алиасы (type aliases_) и другие. Это позволяет разработчикам писать более выразительный и понятный код.
 
 4. **Компиляция:** TypeScript код компилируется в JavaScript, поэтому он может быть исполнен в любом совместимом с JavaScript окружении. Компилятор TypeScript проверяет синтаксис и типы на этапе компиляции, что помогает выявить ошибки до запуска программы.
 
@@ -51,42 +51,42 @@ TypeScript - это язык программирования, который я
 
 1. Функция, которая всегда бросает ошибку
 
-    ```TypeScript
-    function fail(message: string): never {
-      throw new Error(message);
-    }
-    ```
+   ```TypeScript
+   function fail(message: string): never {
+     throw new Error(message);
+   }
+   ```
 
 2. Бесконечный цикл
 
-    ```TypeScript
-    function infiniteLoop(): never {
-      while (true) {
-        // выполняется бесконечно
-      }
-    }
-    ```
+   ```TypeScript
+   function infiniteLoop(): never {
+     while (true) {
+       // выполняется бесконечно
+     }
+   }
+   ```
 
 3. Проверка корректности switch (exhaustive check)
 
-    ```TypeScript
-    type Shape = 
-      | { kind: "circle"; radius: number }
-      | { kind: "square"; side: number };
-    
-    function area(shape: Shape): number {
-      switch (shape.kind) {
-        case "circle":
-          return Math.PI * shape.radius ** 2;
-        case "square":
-          return shape.side * shape.side;
-        default:
-          // сюда мы попасть НЕ должны
-          const _exhaustive: never = shape; 
-          return _exhaustive;
-      }
-    }
-    ```
+   ```TypeScript
+   type Shape =
+     | { kind: "circle"; radius: number }
+     | { kind: "square"; side: number };
+
+   function area(shape: Shape): number {
+     switch (shape.kind) {
+       case "circle":
+         return Math.PI * shape.radius ** 2;
+       case "square":
+         return shape.side * shape.side;
+       default:
+         // сюда мы попасть НЕ должны
+         const _exhaustive: never = shape;
+         return _exhaustive;
+     }
+   }
+   ```
 
 ---
 
@@ -288,7 +288,7 @@ type MyReturnType<T> = T extends (...args: []any) => infer R ? R : never
 ```ts
 const colors = {
   primary: "#ff0000",
-  secondary: "#00ff00"
+  secondary: "#00ff00",
 } as const;
 
 // Тип выводится как:
@@ -304,7 +304,7 @@ type ColorConfig = Record<string, string>;
 
 const colors = {
   primary: "#ff0000",
-  secondary: "#00ff00"
+  secondary: "#00ff00",
 } satisfies ColorConfig;
 
 // Тип выводится как исходный:
@@ -320,9 +320,10 @@ type AllowedKeys = "primary" | "secondary";
 
 const colors = {
   primary: "#ff0000",
-  secondary: "#00ff00"
+  secondary: "#00ff00",
 } as const satisfies Record<AllowedKeys, string>;
 ```
+
 </details>
 
 <details>
@@ -638,15 +639,15 @@ type IsSameType<A,B> = A extends B
                          ? 'yes'
                          : 'no'
                        : 'no'
- 
+
 type X = string | number;
 type Y = object;
 type Z = string | number;
- 
+
 type IsStrings = IsSameType<string, string>; // ?
- 
+
 type IsXY = IsSameType<X,Y>; // ?
- 
+
 type IsXZ = IsSameType<X,Z>; // ?
 ```
 
@@ -658,15 +659,15 @@ type IsSameType<A,B> = A extends B
                          ? 'yes'
                          : 'no'
                        : 'no'
- 
+
 type X = string | number;
 type Y = object;
 type Z = string | number;
- 
+
 type IsStrings = IsSameType<string, string>; // yes
- 
+
 type IsXY = IsSameType<X,Y>; // no
- 
+
 type IsXZ = IsSameType<X,Z>; // yes | no
 ```
 
@@ -703,7 +704,7 @@ type NonOptional<T> = {
 ```TypeScript
 function debounce(fn, delay) {
   let timerId
-  
+
   return (...args) => {
     if (timerId) {
       clearTimeout(timerId)
@@ -744,6 +745,103 @@ function debounce<Args extends unknown[]>(
   }
 }
 ```
+
+</details>
+
+<details>
+<summary><b>Типизировать функцию <code>arrayFromKeys</code></b></summary>
+
+```TypeScript
+/*
+Задача: типизировать функцию arrayFromKeys
+*/
+
+const arrayFromKeys = (
+  obj,
+  keys,
+) => {
+  const out = [];
+
+  for (const key of keys) {
+    out.push(obj[key]);
+  }
+
+  return out;
+};
+
+const obj = {
+  a: 1,
+  b: 'B',
+  'c d': null,
+};
+
+arrayFromKeys(obj, ['z']); // error
+
+const result = arrayFromKeys(obj, ['c d', 'a']); // [null, 1]
+```
+
+### Ответ
+
+```TypeScript
+const arrayFromKeys = <T extends object, K extends (keyof T)[]>(
+    obj: T,
+    keys: K,
+) => {
+  const out = [];
+
+  for (const key of keys) {
+    out.push(obj[key]);
+  }
+
+  return out;
+}
+
+const obj = {
+  a: 1,
+  b: 'B',
+  'c d': null,
+};
+
+arrayFromKeys(obj, ['z']); // error
+
+const result = arrayFromKeys(obj, ['c d', 'a']); // [null, 1]
+```
+
+</details>
+
+<details>
+<summary><b>Реализовать утилитарный тип <code>RequireFields&lt;T, K&gt;</code></b></summary>
+
+```TypeScript
+// реализовать RequireFields<T, K> — утилитарный тип, который берёт T и
+// делает поля K обязательными, а остальные поля опциональными
+
+type RequireFields = any
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  age: number;
+}
+
+type UserForm = RequireFields<User, "name" | "email">;
+
+const user: UserForm = {
+  name: 'user',
+  email: 'test@mail.ru',
+  id: 1,
+  password: 1234 // ts должен ругаться на это поле
+}
+```
+
+### Ответ
+
+```TypeScript
+type RequireFields<T, K extends keyof T> = Partial<T> & Required<Pick<T, K>>;
+```
+
+`Pick<T, K>` выбирает только поля `K`, `Required` делает их обязательными, а `Partial<T>` делает опциональными все поля исходного типа (включая `K`, но пересечение с `Required<Pick<T, K>>` их переопределяет обратно в обязательные). В примере из скриншота объект `user` не пройдёт проверку типов: `password` не является полем `User`, а `id` и `age` — опциональные поля, но `age` отсутствует, что допустимо, а вот лишнее поле `password` вызовет ошибку.
 
 </details>
 
