@@ -705,3 +705,147 @@ node index.ts
 - [https://www.npmjs.com/package/tsx](https://www.npmjs.com/package/tsx)
 
 </details>
+<details>
+<summary><b>В чём разница между CommonJS и ES-модулями в Node.js?</b></summary>
+
+CommonJS (`require` / `module.exports`) — историческая модульная система Node: модуль загружается **синхронно в момент вызова** `require`, который просто возвращает объект экспорта. ES-модули (`import` / `export`) — стандарт языка: список импортов известен **статически, до выполнения кода**, поэтому Node сначала строит и разрешает весь граф модулей, и только потом выполняет их.
+
+Из этого «статически до выполнения» против «синхронно в рантайме» вытекают почти все остальные различия.
+
+---
+
+### Ключевые различия
+
+**1. Live bindings против копии значения**
+
+ESM импортирует *связь* с переменной, CJS — *значение* на момент вызова `require`:
+
+```typescript
+// counter.mjs
+export let count = 0;
+export const inc = () => count++;
+
+// main.mjs
+import { count, inc } from "./counter.mjs";
+inc();
+console.log(count); // 1 — импорт видит актуальное значение
+```
+
+```javascript
+// counter.cjs
+let count = 0;
+module.exports = { count, inc: () => count++ };
+
+// main.cjs
+const { count, inc } = require("./counter.cjs");
+inc();
+console.log(count); // 0 — забрали копию примитива
+```
+
+**2. Импорты поднимаются, `require` — нет**
+
+`import` разрешается до выполнения тела модуля, поэтому его нельзя вызвать условно или внутри функции. Для динамической загрузки есть `import()`, возвращающий Promise (работает и в CJS):
+
+```typescript
+// ошибка синтаксиса: import не выражение
+// if (isDev) import "./devtools.js";
+
+if (isDev) {
+  await import("./devtools.js"); // так можно
+}
+```
+
+**3. Top-level `await` есть только в ESM** — модуль может «подождать» прямо на верхнем уровне, потому что загрузка графа и так асинхронная.
+
+**4. В ESM нет `__dirname`, `__filename`, `require`, `module`, `exports`**
+
+```typescript
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// в свежих версиях Node проще:
+// import.meta.dirname / import.meta.filename
+```
+
+Ещё отличия: в ESM обязательно указывать расширение файла в относительном пути (`./utils.js`, а не `./utils`), код модуля всегда выполняется в strict mode, а `this` на верхнем уровне — `undefined` (в CJS это `module.exports`).
+
+**5. Циклические зависимости ведут себя по-разному.** В CJS `require` вернёт частично заполненный `module.exports` — то, что успело выполниться до входа в цикл, часто `undefined`. В ESM за счёт live bindings и hoisting'а объявлений цикл чаще работает корректно: переменная существует, хотя может быть ещё не инициализирована (тогда — `ReferenceError` вместо тихого `undefined`).
+
+---
+
+### Как Node решает, чем считать файл
+
+| Признак | Результат |
+|---|---|
+| `"type": "module"` в ближайшем `package.json` | `.js` трактуется как ESM |
+| `"type": "commonjs"` или поле отсутствует | `.js` трактуется как CJS |
+| Расширение `.mjs` | всегда ESM |
+| Расширение `.cjs` | всегда CJS |
+
+```json
+{
+  "name": "my-app",
+  "type": "module"
+}
+```
+
+---
+
+### Интероп
+
+- Из ESM можно импортировать CJS: `import pkg from './legacy.cjs'` — `module.exports` попадает в `default`. Именованные импорты работают не всегда: Node пытается статически определить экспорты и на динамических присваиваниях (`exports[name] = ...`) сдаётся.
+- Из CJS исторически нельзя было `require` ESM — только `const mod = await import('./esm.mjs')`. Именно отсюда классическая ошибка `ERR_REQUIRE_ESM` при обновлении пакета, который перешёл на ESM.
+- В новых версиях Node появился синхронный `require()` для ESM — он работает, если в графе модуля нет top-level `await` (иначе `ERR_REQUIRE_ASYNC_MODULE`).
+
+**Dual package** — пакет, который отдаёт обе сборки через поле `exports`:
+
+```json
+{
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  }
+}
+```
+
+**Dual package hazard** — если в одно приложение попадут обе сборки, в памяти окажутся **две независимые копии** модуля: своё состояние, свои классы, и `instanceof` между ними ломается. Лечится вынесением состояния в отдельный CJS-модуль или отказом от двойной сборки в пользу одного формата.
+
+---
+
+### Сравнение
+
+| | CommonJS | ESM |
+|---|---|---|
+| Синтаксис | `require` / `module.exports` | `import` / `export` |
+| Загрузка | синхронная, в рантайме | асинхронная, граф строится заранее |
+| Разрешение импортов | динамическое (путь можно вычислить) | статическое (только литерал), динамика — через `import()` |
+| Экспорт | копия значения | live binding |
+| Top-level `await` | нет | да |
+| `__dirname` / `__filename` | есть | нет (`import.meta.url`) |
+| Расширение в пути | необязательно | обязательно |
+| Tree-shaking сборщиком | плохо | хорошо (статический анализ) |
+| Циклы | частично заполненный объект | live bindings, ошибка вместо тихого `undefined` |
+
+---
+
+### Типичные уточняющие вопросы на собеседовании
+
+- **Почему падает `ERR_REQUIRE_ESM`?** CJS-код синхронно `require`-ит пакет, который публикуется только как ESM. Решение: перейти на `await import()`, перевести свой код на ESM или взять версию пакета с CJS-сборкой.
+- **Почему `__dirname is not defined`?** Файл выполняется как ESM (`"type": "module"` или `.mjs`), а `__dirname` — переменная обёртки CJS-модуля. Замена — `import.meta.url` + `fileURLToPath` или `import.meta.dirname`.
+- **Почему нельзя сделать `import` внутри `if`?** Импорты разрешаются до выполнения кода — движку нужен полный граф зависимостей заранее. Для условной загрузки существует `import()`.
+- **Почему ESM лучше для tree-shaking?** Набор экспортов известен статически, сборщик может доказать, что символ не используется. В CJS `module.exports` — обычный объект, который можно менять в рантайме, доказать нечего.
+- **Что делает `require` под капотом?** Разрешает путь, проверяет кэш модулей (`require.cache`), читает файл, оборачивает его в функцию с параметрами `exports, require, module, __filename, __dirname`, выполняет и кэширует `module.exports`. Повторный `require` того же пути тело модуля не выполняет.
+- **В чём разница между `module.exports = x` и `exports.x = y`?** `exports` — просто ссылка на `module.exports`; присваивание всему `exports` эту ссылку рвёт, и экспорт не сработает.
+
+### Дополнительные материалы
+
+- [https://nodejs.org/api/esm.html](https://nodejs.org/api/esm.html)
+- [https://nodejs.org/api/modules.html](https://nodejs.org/api/modules.html)
+- [https://nodejs.org/api/packages.html](https://nodejs.org/api/packages.html)
+
+</details>
