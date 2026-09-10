@@ -702,13 +702,15 @@ app.get("/", (req, res) => {
 
 Node помогает это заметить: при 11-м слушателе на одно событие в консоль печатается `MaxListenersExceededWarning`. Это **предупреждение, а не ошибка** — лимит существует именно как детектор утечек. Если много слушателей действительно нужны, лимит поднимается осознанно через `emitter.setMaxListeners(n)` (или глобально `events.setMaxListeners(n)`), но сначала стоит убедиться, что это не забытая отписка.
 
-Для отписки группой удобен `AbortSignal`:
+Классический `emitter.on()` не принимает третий параметр `{ signal }` — такая опция есть только у `eventTarget.addEventListener()` и у статических хелперов `events.on()`/`events.once()`. Чтобы отписать обычный слушатель по `AbortSignal`, нужно вручную привязать снятие подписки к событию `abort`:
 
 ```typescript
 const controller = new AbortController();
 
-bus.on("tick", handler, { signal: controller.signal });
-controller.abort(); // снимает все подписки, созданные с этим сигналом
+bus.on("tick", handler);
+controller.signal.addEventListener("abort", () => bus.off("tick", handler), { once: true });
+
+controller.abort(); // снимает подписку на "tick"
 ```
 
 ---
@@ -727,6 +729,7 @@ controller.abort(); // снимает все подписки, созданны�
 Мостик между мирами — `events.once`, который превращает ожидание одного события в промис:
 
 ```typescript
+import http from "node:http";
 import { once, on } from "node:events";
 
 const server = http.createServer(handler).listen(3000);
@@ -748,7 +751,7 @@ for await (const [chunk] of on(stream, "data")) {
 - **Чем `once` отличается от `on`?** `once` снимает слушателя сразу после первого вызова — удобно для одноразовых событий (`listening`, `close`), не течёт при повторных срабатываниях.
 - **Почему появляется `MaxListenersExceededWarning` и надо ли его «чинить» через `setMaxListeners`?** Это эвристика для поиска утечек: почти всегда причина — подписка в обработчике запроса без отписки. Поднимать лимит стоит только когда много слушателей действительно ожидаемы.
 - **Где `EventEmitter` используется в самом Node?** Стримы, `http.Server` (`request`, `close`), сокеты `net`, `child_process`, `process` (`exit`, `SIGINT`, `uncaughtException`).
-- **Чем он отличается от браузерного `EventTarget`?** `EventTarget` — веб-стандарт (доступен и в Node), у него события-объекты, всплытие и `preventDefault`; у `EventEmitter` — произвольные аргументы, специальное событие `error` и `MaxListeners`.
+- **Чем он отличается от браузерного `EventTarget`?** `EventTarget` — веб-стандарт (доступен и в Node), у него события-объекты и `preventDefault`; всплытие (bubbling) — это свойство DOM-дерева, а не `EventTarget` самого по себе, изолированный `new EventTarget()` не всплывает. У `EventEmitter` — произвольные аргументы, специальное событие `error` и `MaxListeners`.
 
 ### Дополнительные материалы
 
