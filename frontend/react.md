@@ -930,7 +930,7 @@ Error boundary не обрабатывают ошибки в следующих 
 <details>
 <summary><b>Что такое React Server Components и чем они отличаются от SSR?</b></summary>
 
-React Server Components (RSC) — это компоненты, которые выполняются **только на сервере** и никогда не попадают в клиентский бандл. Ключевое отличие от SSR: SSR рендерит в HTML обычный клиентский компонент, а потом всё равно отправляет его код в браузер и гидрирует; серверный компонент отдаёт на клиент сериализованное описание UI (RSC payload), а его собственный код в браузер не едет вообще.
+React Server Components (RSC) — это компоненты, которые выполняются **только на сервере** и никогда не попадают в клиентский бандл. Ключевое отличие от SSR: SSR рендерит в HTML обычный клиентский компонент, а потом всё равно отправляет его код в браузер и гидрирует (гидрация — процесс, в котором React на клиенте «оживляет» уже отрендеренный в HTML код: навешивает обработчики событий и восстанавливает интерактивность поверх статической разметки); серверный компонент отдаёт на клиент сериализованное описание UI (RSC payload), а его собственный код в браузер не едет вообще.
 
 ### Чем это отличается от SSR
 
@@ -957,9 +957,10 @@ RSC — не замена SSR, а дополнение: обычно они ра
 import { db } from "@/lib/db";
 import { LikeButton } from "./like-button";
 
-export default async function PostPage({ params }: { params: { id: string } }) {
+export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   // Запрос в БД прямо в компоненте: этот код в браузер не попадёт
-  const post = await db.post.findUnique({ where: { id: params.id } });
+  const post = await db.post.findUnique({ where: { id } });
 
   return (
     <article>
