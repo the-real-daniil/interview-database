@@ -1,3 +1,5 @@
+# Основы
+
 <details>
 <summary><b>Что такое Node.js и из каких частей он состоит?</b></summary>
 
@@ -30,6 +32,9 @@ Node.js Runtime
 - [https://nodejs.org/en/learn/getting-started/introduction-to-nodejs](https://nodejs.org/en/learn/getting-started/introduction-to-nodejs)
 
 </details>
+
+# Event Loop и асинхронность
+
 <details>
 <summary><b>Что такое event loop в Node.js?</b></summary>
 
@@ -306,6 +311,8 @@ function infinite() {
 - [https://nodejs.org/en/learn/asynchronous-work/understanding-setimmediate](https://nodejs.org/en/learn/asynchronous-work/understanding-setimmediate)
 
 </details>
+
+# Многопоточность и производительность
 
 <details>
 <summary><b>Когда использовать <code>worker_threads</code> и <code>cluster</code>?</b></summary>
@@ -617,6 +624,9 @@ async function process() {
 - https://nodejs.org/api/stream.html#stream
 
 </details>
+
+# Модули и инструментарий
+
 <details>
 <summary><b>Какие встроенные модули (библиотеки) Node.js ты знаешь?</b></summary>
 
