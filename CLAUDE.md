@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A knowledge base of technical interview prep material, written in Russian, organized as plain Markdown files. There is no build, lint, or test tooling — the "product" is the content itself. Categories: `frontend/`, `backend/`, `system-design/`, `AI/`.
+A knowledge base of technical interview prep material, written in Russian, organized as plain Markdown files. There is no build, lint, or test tooling — the "product" is the content itself. Categories: `frontend/`, `backend/`, `AI/`. There is no top-level `system-design/` directory — system design material lives inside a category, as `frontend/system-design.md` and `backend/system-design.md`.
 
 ## Content format (required for every question)
 
@@ -32,9 +32,9 @@ Rules distilled from `HOW_TO_CONTRIBUTE.md`:
 
 ## Repo layout
 
-- `frontend/` — javascript.md, typescript.md, react.md, vue.md, angular.md, html_css.md, algorithms.md, other.md, plus `images/` referenced by relative path from these files.
-- `backend/nodejs.md` — currently the only backend file.
-- `system-design/frontend.md` — frontend-focused system design questions.
+- `frontend/` — javascript.md, typescript.md, react.md, vue.md, angular.md, html_css.md, algorithms.md, system-design.md, other.md, plus `images/` referenced by relative path from these files.
+- `backend/` — nodejs.md, databases.md, cases.md, system-design.md, and two files that are still empty placeholders: sql.md, message-brokers.md.
+- System design has no category of its own: `frontend/system-design.md` holds frontend-focused questions, `backend/system-design.md` the backend ones. Put new system design material in one of those, don't create a `system-design/` directory.
 - `AI/` — meta-guidance on working with AI coding agents (best-practices.md, context.md, prompting.md), not interview Q&A.
 - `HOW_TO_CONTRIBUTE.md` — the style/process guide; treat as source of truth over inference from existing files when they conflict.
 

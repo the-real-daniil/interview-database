@@ -79,7 +79,7 @@ graph TD
 
 ### Заголовки разделов
 
-Внутри категории (`frontend`, `backend`, `system-design`, `AI`) рекомендуется группировать материалы по тематическим разделам:
+Внутри категории (`frontend`, `backend`, `AI`) рекомендуется группировать материалы по тематическим разделам:
 
 ```markdown
 # Общая теория
@@ -167,7 +167,7 @@ graph TD
 ```text
 frontend/react-rendering.md
 backend/database-indexes.md
-system-design/url-shortener.md
+backend/message-queues.md
 AI/rag-architecture.md
 ```
 
